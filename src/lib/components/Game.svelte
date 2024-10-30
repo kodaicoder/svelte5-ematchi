@@ -35,6 +35,7 @@
 		size = level.size;
 		duration = level.duration;
 		remaining = level.duration;
+		foundEmojis = [];
 		// random select as size emojis from level emojis
 		const selectedEmojis = level!.emojis
 			.slice(0, (size * size) / 2)
