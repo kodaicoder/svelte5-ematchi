@@ -14,14 +14,14 @@
 </script>
 
 <div class="card">
-	<button
-		class="card_button"
-		{onclick}
-		disabled={selected || isfound}
-		class:founded={isfound}
-		class:flipped={selected && !isfound}
-	>
-		{#if !isfound}
+	{#if !isfound}
+		<button
+			class="card_button"
+			{onclick}
+			disabled={selected || isfound}
+			class:founded={isfound}
+			class:flipped={selected && !isfound}
+		>
 			<div class="frontface">
 				<img
 					alt={emoji}
@@ -31,8 +31,8 @@
 				/>
 			</div>
 			<div class="backface"></div>
-		{/if}
-	</button>
+		</button>
+	{/if}
 </div>
 
 <style>
@@ -44,7 +44,7 @@
 	}
 
 	.card_button {
-		@apply relative flex h-full w-full items-center justify-center rounded-[1em] transition-transform duration-500 [transform-style:preserve-3d];
+		@apply relative flex h-full w-full items-center justify-center rounded-[1em] transition-transform duration-300 [transform-style:preserve-3d];
 	}
 
 	button:disabled {

@@ -26,7 +26,7 @@
 					interval = setTimeout(() => {
 						onfound(gridEmojis[selectedCardA]);
 						selectedCardA = selectedCardB = -1;
-					}, 500);
+					}, 300);
 				} else {
 					// not match
 					interval = setTimeout(() => {
