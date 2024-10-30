@@ -44,7 +44,7 @@
 		return [...selectedEmojis, ...selectedEmojis].sort(() => Math.random() - 0.5);
 	}
 
-	function onfound(foundedEmoji: string) {
+	function onFound(foundedEmoji: string) {
 		foundEmojis.push(foundedEmoji);
 		if (foundEmojis.length === (size * size) / 2) {
 			clearInterval(interval);
@@ -81,7 +81,7 @@
 			<Timer {duration} {remaining} {onpause} />
 		</div>
 		<div id="card_container" class="grid-container">
-			<Grid {gridEmojis} gridCount={size} {onfound} {foundEmojis} />
+			<Grid {gridEmojis} gridCount={size} {onFound} {foundEmojis} />
 		</div>
 		<div id="found_container" class="info">
 			<FoundBar {foundEmojis} />
