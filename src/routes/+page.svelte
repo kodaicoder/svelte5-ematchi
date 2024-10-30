@@ -56,7 +56,7 @@
 	<Modal>
 		<div id="title" class="">
 			{#if gameState === 'waiting'}
-				<h1 class="text-5xl">
+				<h1 class="mb-4 text-4xl">
 					<span class="text-emoji">🤯</span>e<span class="text-violet-800">match</span>i<span
 						class="text-emoji">🤯</span
 					>
@@ -70,7 +70,7 @@
 					<span class="text-emoji">⏸️</span>PAUSE<span class="text-emoji">⏸️</span>
 				</h1>
 			{:else if gameState === 'win'}
-				<h1 class="text-center text-3xl leading-[3rem]">
+				<h1 class="text-center text-2xl leading-[3rem]">
 					<span class="text-emoji text-5xl">🏆</span><br />Congratulation <br />You Win
 				</h1>
 				<div class="my-4 text-center">
