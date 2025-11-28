@@ -35,7 +35,7 @@
 	<div class="remaining" style="--remaining: {remaining / duration}"></div>
 </div>
 
-<style>
+<style lang="postcss">
 	.pause_btn svg {
 		@apply flex size-8 items-center justify-center text-slate-100 transition-all duration-150 hover:text-slate-600;
 	}
