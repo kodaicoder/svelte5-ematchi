@@ -14,29 +14,31 @@
 
 	let { level, onPlay, onWin, onLose, onPause }: Props = $props();
 
-	let size = $state<number>(0);
-	let gridEmojis = $state<string[] | null>(null);
+	let size = $derived.by(() => level?.size ?? 0);
+	// let gridEmojis = $state<string[] | null>(null);
+	let gridEmojis = $derived.by(() => {
+		if (level !== undefined) {
+			return createCardGrid(level);
+		}
+		return null;
+	});
 	let foundEmojis = $state<string[]>([]);
-	let duration = $state<number>(1);
-	let remaining = $state<number>(1);
-	let playing = $state<boolean>(false);
-	let interval: number;
+
+	let duration = $derived.by(() => level?.duration ?? 0);
+	let remaining = $derived.by(() => level?.duration ?? 1);
+	let playing = $derived.by(() => {
+		return level !== undefined;
+	});
+	let interval: ReturnType<typeof setInterval>;
 
 	$effect(() => {
 		if (level !== undefined) {
-			gridEmojis = createCardGrid(level);
-			playing = true;
 			countDown();
 			return () => clearInterval(interval);
 		}
 	});
 
 	function createCardGrid(level: Level) {
-		size = level.size;
-		duration = level.duration;
-		remaining = level.duration;
-		foundEmojis = [];
-		// random select as size emojis from level emojis
 		const selectedEmojis = level!.emojis
 			.slice(0, (size * size) / 2)
 			.sort(() => Math.random() - 0.5);
@@ -45,9 +47,10 @@
 	}
 
 	function onFound(foundedEmoji: string) {
-		foundEmojis.push(foundedEmoji);
+		foundEmojis = [...foundEmojis, foundedEmoji];
 		if (foundEmojis.length === (size * size) / 2) {
 			clearInterval(interval);
+			foundEmojis = []; // win then reset found emojis to empty
 			onWin?.(true);
 		}
 	}
@@ -58,6 +61,7 @@
 				remaining -= 250;
 				if (remaining <= 0) {
 					clearInterval(interval);
+					foundEmojis = []; // lose then reset found emojis to empty
 					onLose?.(false);
 				}
 			}
@@ -81,7 +85,7 @@
 			<Timer {duration} {remaining} {onpause} />
 		</div>
 		<div id="card_container" class="grid-container">
-			<Grid {gridEmojis} gridCount={size} {onFound} {foundEmojis} />
+			<Grid {gridEmojis} gridCount={size} {onFound} {foundEmojis} --gridCount={size} />
 		</div>
 		<div id="found_container" class="info">
 			<FoundBar {foundEmojis} />
@@ -89,7 +93,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	.game {
 		@apply flex h-full flex-col items-center justify-center text-[1vmin] lg:text-[0.35rem];
 	}

@@ -3,11 +3,10 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import Game from '$lib/components/Game.svelte';
 	import { levels, type Level } from '$lib/interfaces/levels';
-	import type { SvelteComponent } from 'svelte';
 	type GameState = 'waiting' | 'playing' | 'paused' | 'win' | 'lose';
 	let gameState = $state<GameState>('waiting');
 	let selectedLevel = $state<Level>();
-	let game = $state<SvelteComponent>();
+	let game = $state<Game>();
 	function selectingLevel(level: Level) {
 		selectedLevel = level;
 		gameState = 'playing';
@@ -29,17 +28,13 @@
 	}
 
 	function finishHandler(isWin: boolean) {
-		if (isWin) {
-			gameState = 'win';
-		} else {
-			gameState = 'lose';
-		}
+		gameState = isWin ? 'win' : 'lose';
 	}
 </script>
 
 {#snippet levelSelector()}
 	<div class="flex justify-evenly gap-4">
-		{#each levels as level, i}
+		{#each levels as level (level.label)}
 			<button
 				class=" rounded-md border-2 border-slate-800 bg-slate-200 p-4 transition-all duration-150 hover:bg-slate-500"
 				onclick={() => {
@@ -133,6 +128,7 @@
 		</div>
 	</Modal>
 {/if}
+
 <Game
 	bind:this={game}
 	level={selectedLevel}

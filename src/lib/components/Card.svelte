@@ -5,7 +5,7 @@
 	interface Props {
 		emoji: string;
 		selected: boolean;
-		onclick: any;
+		onclick: (event: MouseEvent) => void;
 		isfound: boolean;
 		group: 'first' | 'second';
 	}
@@ -21,6 +21,7 @@
 			disabled={selected || isfound}
 			class:founded={isfound}
 			class:flipped={selected && !isfound}
+			aria-label={selected ? `Showing ${emoji}` : 'Hidden card'}
 		>
 			<div class="frontface">
 				<img
@@ -35,7 +36,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.card {
 		@apply flex items-center justify-center;
 	}
