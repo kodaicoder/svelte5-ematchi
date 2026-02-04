@@ -3,14 +3,17 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import Game from '$lib/components/Game.svelte';
 	import { levels, type Level } from '$lib/interfaces/levels';
-	type GameState = 'waiting' | 'playing' | 'paused' | 'win' | 'lose';
+	import type { GameState } from '$lib/interfaces/games';
+
 	let gameState = $state<GameState>('waiting');
 	let selectedLevel = $state<Level>();
 	let game = $state<Game>();
+
 	function selectingLevel(level: Level) {
 		selectedLevel = level;
 		gameState = 'playing';
 	}
+
 	function gameResumeHandler() {
 		gameState = 'playing';
 		console.log('RESUME CLICKING');
@@ -49,7 +52,7 @@
 
 {#if gameState !== 'playing'}
 	<Modal>
-		<div id="title" class="">
+		<div id="title">
 			{#if gameState === 'waiting'}
 				<h1 class="mb-4 text-4xl">
 					<span class="text-emoji">🤯</span>e<span class="text-violet-800">match</span>i<span
@@ -65,14 +68,14 @@
 					<span class="text-emoji">⏸️</span>PAUSE<span class="text-emoji">⏸️</span>
 				</h1>
 			{:else if gameState === 'win'}
-				<h1 class="text-center text-2xl leading-[3rem]">
+				<h1 class="text-center text-2xl leading-12">
 					<span class="text-emoji text-5xl">🏆</span><br />Congratulation <br />You Win
 				</h1>
 				<div class="my-4 text-center">
 					<p>want to try again ?</p>
 				</div>
 				<div
-					class="pointer-events-none fixed -top-[50px] left-0 flex h-screen w-screen justify-center overflow-hidden"
+					class="pointer-events-none fixed -top-12.5 left-0 flex h-screen w-screen justify-center overflow-hidden"
 				>
 					<Confetti
 						x={[-5, 5]}
@@ -85,7 +88,7 @@
 					/>
 				</div>
 			{:else if gameState === 'lose'}
-				<h1 class="text-center text-3xl leading-[3rem]">
+				<h1 class="text-center text-3xl leading-12">
 					<span class="text-emoji text-5xl">⏱️</span><br />Time Up!
 				</h1>
 				<div class="my-4 text-center">

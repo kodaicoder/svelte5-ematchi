@@ -1,0 +1,24 @@
+@import '@fontsource/press-start-2p';
+@import 'tailwindcss';
+
+@theme {
+	--font-press_start_2p: 'Press Start 2P', cursive, system-ui;
+	--color-main: #222;
+}
+
+:root {
+	@apply relative box-border;
+}
+
+html,
+body {
+	@apply m-0 h-full bg-main font-press_start_2p;
+}
+
+button {
+	@apply cursor-pointer;
+}
+
+.text-emoji {
+	@apply align-[0.5rem];
+}

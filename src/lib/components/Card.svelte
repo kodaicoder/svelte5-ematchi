@@ -37,15 +37,17 @@
 </div>
 
 <style lang="postcss">
+	@reference "tailwindcss";
+
 	.card {
 		@apply flex items-center justify-center;
 	}
 	.flipped {
-		@apply z-10 rounded-[1em] [transform:rotateY(180deg)];
+		@apply z-10 transform-[rotateY(180deg)] rounded-[1em];
 	}
 
 	.card_button {
-		@apply relative flex h-full w-full items-center justify-center rounded-[1em] transition-transform duration-300 [transform-style:preserve-3d];
+		@apply relative flex h-full w-full items-center justify-center rounded-[1em] transition-transform duration-300 transform-3d;
 	}
 
 	button:disabled {
@@ -57,7 +59,7 @@
 	}
 
 	.frontface {
-		@apply absolute flex h-full w-full place-content-center items-center border-4 border-solid border-violet-300 bg-slate-600 [backface-visibility:hidden] [transform:rotateY(180deg)];
+		@apply absolute flex h-full w-full transform-[rotateY(180deg)] place-content-center items-center border-4 border-solid border-violet-300 bg-slate-600 backface-hidden;
 	}
 
 	.emoji {
@@ -65,6 +67,6 @@
 	}
 
 	.backface {
-		@apply absolute h-full w-full border-4 border-solid border-violet-300 bg-slate-800 [backface-visibility:hidden];
+		@apply absolute h-full w-full border-4 border-solid border-violet-300 bg-slate-800 backface-hidden;
 	}
 </style>
