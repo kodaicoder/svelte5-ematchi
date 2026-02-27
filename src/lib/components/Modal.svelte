@@ -14,25 +14,14 @@
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
+	@reference "tailwindcss";
+
 	.modal-background {
-		position: fixed;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		backdrop-filter: blur(10px);
-		display: grid;
-		place-content: center;
-		z-index: 999;
+		@apply fixed top-0 left-0 z-999 grid h-full w-full place-content-center backdrop-blur-md;
 	}
 
 	.modal {
-		background-color: ghostwhite;
-		padding: 2rem;
-		border-radius: 1rem;
-		display: grid;
-		place-content: center;
-		justify-items: center;
+		@apply grid place-content-center justify-items-center rounded-2xl bg-[ghostwhite] p-8;
 	}
 </style>

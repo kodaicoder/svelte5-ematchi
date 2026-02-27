@@ -26,6 +26,8 @@
 {/each}
 
 <style lang="postcss">
+    @reference "tailwindcss";
+     
 	.emoji {
 		@apply absolute z-30 h-[4em] w-[4em];
 	}

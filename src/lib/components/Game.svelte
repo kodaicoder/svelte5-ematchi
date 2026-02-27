@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { levels, type Level } from '$lib/interfaces/levels';
+	import { type Level } from '$lib/interfaces/levels';
 	import FoundBar from './FoundBar.svelte';
 	import Grid from './Grid.svelte';
 	import Timer from './Timer.svelte';
@@ -30,12 +30,12 @@
 		return level !== undefined;
 	});
 	let interval: ReturnType<typeof setInterval>;
-
 	$effect(() => {
 		if (level !== undefined) {
 			countDown();
-			return () => clearInterval(interval);
+			// return () => clearInterval(interval);
 		}
+		return () => clearInterval(interval);
 	});
 
 	function createCardGrid(level: Level) {
@@ -94,6 +94,8 @@
 {/if}
 
 <style lang="postcss">
+	@reference "tailwindcss";
+
 	.game {
 		@apply flex h-full flex-col items-center justify-center text-[1vmin] lg:text-[0.35rem];
 	}

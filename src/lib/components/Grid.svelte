@@ -57,7 +57,9 @@
 {/if}
 
 <style lang="postcss">
+	@reference "tailwindcss";
+
 	.grid_container {
-		@apply grid h-full grid-cols-[repeat(_var(--gridCount,4),minmax(0,_1fr))] grid-rows-[repeat(_var(--gridCount,4),minmax(0,1fr))] gap-2 p-2;
+		@apply grid h-full grid-cols-[repeat(var(--gridCount,4),minmax(0,1fr))] grid-rows-[repeat(var(--gridCount,4),minmax(0,1fr))] gap-2 p-2;
 	}
 </style>

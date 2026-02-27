@@ -36,6 +36,8 @@
 </div>
 
 <style lang="postcss">
+	@reference "tailwindcss";
+
 	.pause_btn svg {
 		@apply flex size-8 items-center justify-center text-slate-100 transition-all duration-150 hover:text-slate-600;
 	}
@@ -45,6 +47,6 @@
 	}
 
 	.remaining {
-		@apply h-full w-[calc(100%_*_var(--remaining))] rounded-lg bg-green-500;
+		@apply h-full w-[calc(100%*var(--remaining))] rounded-lg bg-green-500 transition-all duration-500;
 	}
 </style>
