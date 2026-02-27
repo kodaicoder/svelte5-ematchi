@@ -67,6 +67,6 @@
 	}
 
 	.backface {
-		@apply absolute h-full w-full border-4 border-solid border-violet-300 bg-slate-800 backface-hidden;
+		@apply absolute h-full w-full border-4 border-solid border-violet-200 bg-slate-800 backface-hidden;
 	}
 </style>
