@@ -8,7 +8,7 @@
 	let { foundEmojis }: Props = $props();
 </script>
 
-{#each foundEmojis as emoji}
+{#each foundEmojis as emoji (emoji)}
 	<div class="pair">
 		<img
 			src={getTwemojiUrl(emoji)}
@@ -25,7 +25,7 @@
 	</div>
 {/each}
 
-<style>
+<style lang="postcss">
 	.emoji {
 		@apply absolute z-30 h-[4em] w-[4em];
 	}
