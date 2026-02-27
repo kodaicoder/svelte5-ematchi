@@ -47,7 +47,7 @@
 	}
 
 	.card_button {
-		@apply relative flex h-full w-full items-center justify-center rounded-[1em] transition-transform duration-300 transform-3d;
+		@apply relative flex h-full w-full items-center justify-center rounded-[1em] transition-transform duration-200 transform-3d;
 	}
 
 	button:disabled {
