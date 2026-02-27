@@ -72,16 +72,7 @@
 					<p>want to try again ?</p>
 				</div>
 				<div
-					style="
-            position: fixed;
-            top: -50px;
-            left: 0;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-            pointer-events: none;"
+					class="pointer-events-none fixed -top-[50px] left-0 flex h-screen w-screen justify-center overflow-hidden"
 				>
 					<Confetti
 						x={[-5, 5]}
