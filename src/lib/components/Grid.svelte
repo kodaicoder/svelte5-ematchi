@@ -5,10 +5,10 @@
 		gridEmojis: string[] | null;
 		foundEmojis: string[];
 		gridCount: number;
-		onfound: (foundedEmoji: string) => void;
+		onFound: (foundedEmoji: string) => void;
 	}
 
-	let { gridEmojis = [], gridCount = 0, onfound, foundEmojis }: Props = $props();
+	let { gridEmojis = [], gridCount = 0, onFound, foundEmojis }: Props = $props();
 	let selectedCardA = $state(-1);
 	let selectedCardB = $state(-1);
 	let lastSelected = $state(-1);
@@ -24,7 +24,7 @@
 				if (gridEmojis[selectedCardA] === gridEmojis[selectedCardB]) {
 					// match
 					interval = setTimeout(() => {
-						onfound(gridEmojis[selectedCardA]);
+						onFound(gridEmojis[selectedCardA]);
 						selectedCardA = selectedCardB = -1;
 					}, 300);
 				} else {
