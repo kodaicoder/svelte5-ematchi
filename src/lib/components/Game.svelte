@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { type Level } from '$lib/interfaces/levels';
-	import FoundBar from './FoundBar.svelte';
-	import Grid from './Grid.svelte';
 	import Timer from './Timer.svelte';
+	import Grid from './Grid.svelte';
+	import FoundBar from './FoundBar.svelte';
 
 	interface Props {
 		level?: Level;
@@ -15,7 +15,7 @@
 	let { level, onPlay, onWin, onLose, onPause }: Props = $props();
 
 	let size = $derived.by(() => level?.size ?? 0);
-	// let gridEmojis = $state<string[] | null>(null);
+
 	let gridEmojis = $derived.by(() => {
 		if (level !== undefined) {
 			return createCardGrid(level);
@@ -29,11 +29,11 @@
 	let playing = $derived.by(() => {
 		return level !== undefined;
 	});
+
 	let interval: ReturnType<typeof setInterval>;
 	$effect(() => {
-		if (level !== undefined) {
+		if (level && playing) {
 			countDown();
-			// return () => clearInterval(interval);
 		}
 		return () => clearInterval(interval);
 	});
@@ -57,20 +57,18 @@
 
 	function countDown() {
 		interval = setInterval(() => {
-			if (playing) {
-				remaining -= 250;
-				if (remaining <= 0) {
-					clearInterval(interval);
-					foundEmojis = []; // lose then reset found emojis to empty
-					onLose?.(false);
-				}
+			remaining -= 250;
+			if (remaining <= 0) {
+				clearInterval(interval);
+				foundEmojis = []; // lose then reset found emojis to empty
+				onLose?.(false);
 			}
 		}, 250);
 	}
 
 	export function resume() {
 		playing = true;
-		onPlay?.(true);
+		// onPlay?.(true);
 	}
 
 	function onpause(state: boolean) {

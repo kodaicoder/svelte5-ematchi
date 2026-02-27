@@ -5,8 +5,8 @@
 	import { levels, type Level } from '$lib/interfaces/levels';
 	import type { GameState } from '$lib/interfaces/games';
 
-	let gameState = $state<GameState>('waiting');
-	let selectedLevel = $state<Level>();
+	let gameState = $state<GameState>('playing');
+	let selectedLevel = $state<Level>(levels[0]);
 	let game = $state<Game>();
 
 	function selectingLevel(level: Level) {
